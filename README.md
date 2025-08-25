@@ -92,14 +92,6 @@ Create a single executable using PyInstaller.
 
 Install: pip install pyinstaller
 
-Windows:
-
-pyinstaller --noconsole --onefile --add-data "ui/Main.qml;ui" --add-data "assets/icons/ball.svg;assets/icons" --add-data "assets/fonts/Inter-Regular.ttf;assets/fonts" --add-data "assets/fonts/Inter-SemiBold.ttf;assets/fonts" app/main.py
-
-macOS/Linux (use colons as separators):
-
-pyinstaller --noconsole --onefile --add-data "ui/Main.qml:ui" --add-data "assets/icons/ball.svg:assets/icons" --add-data "assets/fonts/Inter-Regular.ttf:assets/fonts" --add-data "assets/fonts/Inter-SemiBold.ttf:assets/fonts" app/main.py
-
 Output binary will be in dist/.
 
 Tech stack
