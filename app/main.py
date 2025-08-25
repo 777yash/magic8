@@ -1,5 +1,5 @@
-# app/main.py
 import sys
+import os
 import random
 from PySide6.QtCore import QObject, Property, Signal, Slot, QTimer, QUrl
 from PySide6.QtQml import QQmlApplicationEngine
@@ -21,7 +21,7 @@ RESPONSES = [
     "Better not tell you now.",
     "Cannot predict now.",
     "Concentrate and ask again.",
-    "Don’t count on it.",
+    "Don't count on it.",
     "My reply is no.",
     "My sources say no.",
     "Outlook not so good.",
@@ -76,12 +76,15 @@ def main():
     engine = QQmlApplicationEngine()
 
     logic = Logic()
-    engine.load(QUrl.fromLocalFile("ui/Main.qml"))
+    # Expose backend as context property
+    engine.rootContext().setContextProperty("logic", logic)
+
+    # Load QML from project root
+    qml_file = os.path.join(os.path.dirname(os.path.dirname(__file__)), "ui", "Main.qml")
+    engine.load(QUrl.fromLocalFile(qml_file))
+    
     if not engine.rootObjects():
         sys.exit(-1)
-
-    root = engine.rootObjects()[0]
-    root.setProperty("logic", logic)
 
     sys.exit(app.exec())
 
